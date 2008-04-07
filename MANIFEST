@@ -16,3 +16,6 @@ README
 t/basic.t
 t/eg/NoCoverage.pm
 t/eg/PodPrivate.pm
+xt/perl-critic.t
+xt/pod-coverage.t
+xt/pod.t
