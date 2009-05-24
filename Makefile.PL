@@ -1,15 +1,19 @@
+
 use strict;
 use warnings;
 
-use inc::Module::Install;
+use ExtUtils::MakeMaker;
 
-name          ('Pod-Coverage-TrustPod');
-author        ('Ricardo Signes <rjbs@cpan.org>');
-license       ('perl');
-all_from      ('lib/Pod/Coverage/TrustPod.pm');
-
-requires('Pod::Coverage'         => 0.000); # minimum unknown
-requires('Pod::Eventual::Simple' => 0.000); # minimum unknown
-
-auto_manifest;
-WriteAll();
+WriteMakefile(
+  DISTNAME  => 'Pod-Coverage-TrustPod',
+  NAME      => 'Pod::Coverage::TrustPod',
+  AUTHOR    => 'Ricardo\ SIGNES\ \<rjbs\@cpan\.org\>',
+  ABSTRACT  => 'allow\ a\ module\'s\ pod\ to\ contain\ Pod\:\:Coverage\ hints',
+  VERSION   => '0.091440',
+  EXE_FILES => [ qw() ],
+  (eval { ExtUtils::MakeMaker->VERSION(6.21) } ? (LICENSE => 'perl') : ()),
+  PREREQ_PM    => {
+    "Pod::Coverage" => '0',
+    "Pod::Eventual::Simple" => '0',
+  },
+);

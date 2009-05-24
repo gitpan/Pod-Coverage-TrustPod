@@ -1,0 +1,21 @@
+{
+   "resources" : {
+      "repository" : "http://github.com/rjbs/pod-coverage-trustpod/tree"
+   },
+   "meta-spec" : {
+      "version" : 1.4,
+      "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
+   },
+   "generated_by" : "Dist::Zilla::Plugin::MetaJSON version 1.091440",
+   "version" : "0.091440",
+   "name" : "Pod-Coverage-TrustPod",
+   "author" : [
+      "Ricardo SIGNES <rjbs@cpan.org>"
+   ],
+   "license" : "perl",
+   "requires" : {
+      "Pod::Coverage" : "0",
+      "Pod::Eventual::Simple" : "0"
+   },
+   "abstract" : "allow a module's pod to contain Pod::Coverage hints"
+}

@@ -1,66 +1,13 @@
 use strict;
 use warnings;
 package Pod::Coverage::TrustPod;
+our $VERSION = '0.091440';
+
 use base 'Pod::Coverage::CountParents';
+# ABSTRACT: allow a module's pod to contain Pod::Coverage hints
 
 use Pod::Eventual::Simple;
 
-=head1 NAME
-
-Pod::Coverage::TrustPod - allow POD to contain Pod::Coverage hints
-
-=cut
-
-our $VERSION = '0.002';
-
-=head1 DESCRIPTION
-
-This is a Pod::Coverage subclass (actually, a subclass of
-Pod::Coverage::CountParents) that allows the POD itself to declare certain
-symbol names trusted.
-
-Here is a sample Perl module:
-
-  package Foo::Bar;
-
-  =head1 NAME
-
-  Foo::Bar - a bar at which fooes like to drink
-
-  =head1 METHODS
-
-  =head2 fee
-
-  returns the bar tab
-
-  =cut
-
-  sub fee { ... }
-
-  =head2 fie
-
-  scoffs at bar tab
-
-  =cut
-
-  sub fie { ... }
-
-  sub foo { ... }
-
-  =begin Pod::Coverage
-
-    foo
-
-  =end Pod::Coverage
-
-  =cut
-
-This file would report full coverage, because any non-empty lines inside a
-block of POD targeted to Pod::Coverage are treated as C<trustme> patterns.
-Leading and trailing whitespace is stripped and the remainder is treated as a
-regular expression.
-
-=cut
 
 sub __get_pod_trust {
   my ($self) = @_;
@@ -69,17 +16,19 @@ sub __get_pod_trust {
 
   my @hunks = grep {;
     no warnings 'uninitialized';
-    (($_->{command} eq 'begin' and $_->{content} =~ /^Pod::Coverage\b/)
+    ((($_->{command} eq 'begin' and $_->{content} =~ /^Pod::Coverage\b/)
     ...
     ($_->{command} eq 'end' and $_->{content} =~ /^Pod::Coverage\b/))
-    and
-    $_->{type} eq 'verbatim'
+    and $_->{type} eq 'verbatim')
+    or
+    $_->{command} eq 'for' and $_->{content} =~ /^Pod::Coverage\b/
   } @$output;
 
-  return [
+  my @trusted =
     grep { s/^\s+//; s/\s+$//; /\S/ }
-    map  { split /\n/, $_->{content} } @hunks
-  ];
+    map  { split /\s/m, $_->{content} } @hunks;
+
+  return \@trusted;
 }
 
 sub _trustme_check {
@@ -90,13 +39,78 @@ sub _trustme_check {
   return grep { $sym =~ /$_/ } @{ $self->{trustme} }, @$from_pod;
 }
 
-=head1 COPYRIGHT AND AUTHOR
-
-This distribution was written by Ricardo Signes, E<lt>rjbs@cpan.orgE<gt>.
-
-Copyright 2008.  This is free software, released under the same terms as perl
-itself.
-
-=cut
-
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Pod::Coverage::TrustPod - allow a module's pod to contain Pod::Coverage hints
+
+=head1 VERSION
+
+version 0.091440
+
+=head1 DESCRIPTION
+
+This is a Pod::Coverage subclass (actually, a subclass of
+Pod::Coverage::CountParents) that allows the POD itself to declare certain
+symbol names trusted.
+
+Here is a sample Perl module:
+
+    package Foo::Bar;
+
+    =head1 NAME
+
+    Foo::Bar - a bar at which fooes like to drink
+
+    =head1 METHODS
+
+    =head2 fee
+
+    returns the bar tab
+
+    =cut
+
+    sub fee { ... }
+
+    =head2 fie
+
+    scoffs at bar tab
+
+    =cut
+
+    sub fie { ... }
+
+    sub foo { ... }
+
+    =begin Pod::Coverage
+
+      foo
+
+    =end Pod::Coverage
+
+    =cut
+
+This file would report full coverage, because any non-empty lines inside a
+block of POD targeted to Pod::Coverage are treated as C<trustme> patterns.
+Leading and trailing whitespace is stripped and the remainder is treated as a
+regular expression.
+
+=head1 AUTHOR
+
+  Ricardo SIGNES <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2009 by Ricardo SIGNES.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as perl itself.
+
+=cut 
+
+
