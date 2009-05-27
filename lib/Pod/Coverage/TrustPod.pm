@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 package Pod::Coverage::TrustPod;
-our $VERSION = '0.091440';
+our $VERSION = '0.091470';
 
 use base 'Pod::Coverage::CountParents';
 # ABSTRACT: allow a module's pod to contain Pod::Coverage hints
@@ -19,7 +19,7 @@ sub __get_pod_trust {
     ((($_->{command} eq 'begin' and $_->{content} =~ /^Pod::Coverage\b/)
     ...
     ($_->{command} eq 'end' and $_->{content} =~ /^Pod::Coverage\b/))
-    and $_->{type} eq 'verbatim')
+    and $_->{type} =~ m{\Averbatim|text\z})
     or
     $_->{command} eq 'for' and $_->{content} =~ /^Pod::Coverage\b/
   } @$output;
@@ -51,7 +51,7 @@ Pod::Coverage::TrustPod - allow a module's pod to contain Pod::Coverage hints
 
 =head1 VERSION
 
-version 0.091440
+version 0.091470
 
 =head1 DESCRIPTION
 

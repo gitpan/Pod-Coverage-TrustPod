@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 package PodFor;
-our $VERSION = '0.091440';
+our $VERSION = '0.091470';
 
 
 =head1 NAME

@@ -9,7 +9,7 @@ WriteMakefile(
   NAME      => 'Pod::Coverage::TrustPod',
   AUTHOR    => 'Ricardo\ SIGNES\ \<rjbs\@cpan\.org\>',
   ABSTRACT  => 'allow\ a\ module\'s\ pod\ to\ contain\ Pod\:\:Coverage\ hints',
-  VERSION   => '0.091440',
+  VERSION   => '0.091470',
   EXE_FILES => [ qw() ],
   (eval { ExtUtils::MakeMaker->VERSION(6.21) } ? (LICENSE => 'perl') : ()),
   PREREQ_PM    => {
