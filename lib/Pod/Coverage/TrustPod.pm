@@ -1,18 +1,26 @@
 use strict;
 use warnings;
 package Pod::Coverage::TrustPod;
-our $VERSION = '0.091470';
+our $VERSION = '0.092400';
 
 use base 'Pod::Coverage::CountParents';
 # ABSTRACT: allow a module's pod to contain Pod::Coverage hints
 
+use Pod::Find qw(pod_where);
 use Pod::Eventual::Simple;
 
 
 sub __get_pod_trust {
-  my ($self) = @_;
+  my ($self, $package, $collect) = @_;
 
-  my $output = Pod::Eventual::Simple->read_file($self->{pod_from});
+  my @parents;
+  {
+    no strict 'refs';
+    @parents = @{"$package\::ISA"};
+  }
+
+  my $file   = pod_where( { -inc => 1 }, $package );
+  my $output = Pod::Eventual::Simple->read_file($file);
 
   my @hunks = grep {;
     no warnings 'uninitialized';
@@ -21,22 +29,29 @@ sub __get_pod_trust {
     ($_->{command} eq 'end' and $_->{content} =~ /^Pod::Coverage\b/))
     and $_->{type} =~ m{\Averbatim|text\z})
     or
-    $_->{command} eq 'for' and $_->{content} =~ /^Pod::Coverage\b/
+    $_->{command} eq 'for' and $_->{content} =~ s/^Pod::Coverage\b//
   } @$output;
 
   my @trusted =
     grep { s/^\s+//; s/\s+$//; /\S/ }
     map  { split /\s/m, $_->{content} } @hunks;
 
-  return \@trusted;
+  $collect->{$_} = 1 for @trusted;
+
+  $self->__get_pod_trust($_, $collect) for @parents;
+
+  return $collect;
 }
 
 sub _trustme_check {
   my ($self, $sym) = @_;
 
-  my $from_pod = $self->{_trust_from_pod} ||= $self->__get_pod_trust;
+  my $from_pod = $self->{_trust_from_pod} ||= $self->__get_pod_trust(
+    $self->{package},
+    {}
+  );
 
-  return grep { $sym =~ /$_/ } @{ $self->{trustme} }, @$from_pod;
+  return grep { $sym =~ /$_/ } @{ $self->{trustme} }, keys %$from_pod;
 }
 
 1;
@@ -51,7 +66,7 @@ Pod::Coverage::TrustPod - allow a module's pod to contain Pod::Coverage hints
 
 =head1 VERSION
 
-version 0.091470
+version 0.092400
 
 =head1 DESCRIPTION
 
@@ -61,39 +76,39 @@ symbol names trusted.
 
 Here is a sample Perl module:
 
-    package Foo::Bar;
+  package Foo::Bar;
 
-    =head1 NAME
+  =head1 NAME
 
-    Foo::Bar - a bar at which fooes like to drink
+  Foo::Bar - a bar at which fooes like to drink
 
-    =head1 METHODS
+  =head1 METHODS
 
-    =head2 fee
+  =head2 fee
 
-    returns the bar tab
+  returns the bar tab
 
-    =cut
+  =cut
 
-    sub fee { ... }
+  sub fee { ... }
 
-    =head2 fie
+  =head2 fie
 
-    scoffs at bar tab
+  scoffs at bar tab
 
-    =cut
+  =cut
 
-    sub fie { ... }
+  sub fie { ... }
 
-    sub foo { ... }
+  sub foo { ... }
 
-    =begin Pod::Coverage
+  =begin Pod::Coverage
 
-      foo
+    foo
 
-    =end Pod::Coverage
+  =end Pod::Coverage
 
-    =cut
+  =cut
 
 This file would report full coverage, because any non-empty lines inside a
 block of POD targeted to Pod::Coverage are treated as C<trustme> patterns.
@@ -109,7 +124,7 @@ regular expression.
 This software is copyright (c) 2009 by Ricardo SIGNES.
 
 This is free software; you can redistribute it and/or modify it under
-the same terms as perl itself.
+the same terms as the Perl 5 programming language system itself.
 
 =cut 
 

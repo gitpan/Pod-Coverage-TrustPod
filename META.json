@@ -6,8 +6,8 @@
       "version" : 1.4,
       "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
    },
-   "generated_by" : "Dist::Zilla::Plugin::MetaJSON version 1.091440",
-   "version" : "0.091470",
+   "generated_by" : "Dist::Zilla::Plugin::MetaJSON version 1.092400",
+   "version" : "0.092400",
    "name" : "Pod-Coverage-TrustPod",
    "author" : [
       "Ricardo SIGNES <rjbs@cpan.org>"

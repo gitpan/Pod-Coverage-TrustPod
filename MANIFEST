@@ -10,3 +10,5 @@ t/basic.t
 t/eg/NoCoverage.pm
 t/eg/PodFor.pm
 t/eg/PodPrivate.pm
+t/release-pod-coverage.t
+t/release-pod-syntax.t

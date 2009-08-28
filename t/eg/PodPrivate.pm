@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 package PodPrivate;
-our $VERSION = '0.091470';
+our $VERSION = '0.092400';
 
 
 =head1 NAME
