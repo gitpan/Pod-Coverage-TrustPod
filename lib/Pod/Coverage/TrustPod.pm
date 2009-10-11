@@ -1,7 +1,8 @@
 use strict;
 use warnings;
 package Pod::Coverage::TrustPod;
-our $VERSION = '0.092400';
+our $VERSION = '0.092830';
+
 
 use base 'Pod::Coverage::CountParents';
 # ABSTRACT: allow a module's pod to contain Pod::Coverage hints
@@ -19,7 +20,8 @@ sub __get_pod_trust {
     @parents = @{"$package\::ISA"};
   }
 
-  my $file   = pod_where( { -inc => 1 }, $package );
+  return $collect unless my $file   = pod_where( { -inc => 1 }, $package );
+
   my $output = Pod::Eventual::Simple->read_file($file);
 
   my @hunks = grep {;
@@ -66,7 +68,7 @@ Pod::Coverage::TrustPod - allow a module's pod to contain Pod::Coverage hints
 
 =head1 VERSION
 
-version 0.092400
+version 0.092830
 
 =head1 DESCRIPTION
 
@@ -77,6 +79,7 @@ symbol names trusted.
 Here is a sample Perl module:
 
   package Foo::Bar;
+our $VERSION = '0.092830';
 
   =head1 NAME
 

@@ -1,0 +1,23 @@
+package ChildWithPod;
+our $VERSION = '0.092830';
+
+
+
+use base qw(BaseWithNoPod);
+
+=head1 NAME
+
+ChildWithPod - And we inherit from someone without it, how rude!
+
+
+=head1 METHODS
+
+=head2 blah
+
+Blah method
+
+=cut
+
+sub blah {}
+
+1;
