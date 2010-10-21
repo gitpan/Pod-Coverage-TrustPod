@@ -1,7 +1,4 @@
 package ChildWithPod;
-our $VERSION = '0.092830';
-
-
 
 use base qw(BaseWithNoPod);
 

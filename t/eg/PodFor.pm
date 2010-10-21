@@ -3,9 +3,6 @@ use strict;
 use warnings;
 
 package PodFor;
-our $VERSION = '0.092830';
-
-
 
 =head1 NAME
 

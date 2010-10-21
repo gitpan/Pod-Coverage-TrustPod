@@ -2,6 +2,7 @@ Changes
 LICENSE
 MANIFEST
 META.json
+META.yml
 Makefile.PL
 README
 dist.ini
@@ -13,5 +14,4 @@ t/eg/NoCoverage.pm
 t/eg/PodFor.pm
 t/eg/PodPrivate.pm
 t/no-pod-parent.t
-t/release-pod-coverage.t
 t/release-pod-syntax.t

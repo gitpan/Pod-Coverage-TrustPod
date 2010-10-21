@@ -1,9 +1,9 @@
 use strict;
 use warnings;
 package Pod::Coverage::TrustPod;
-our $VERSION = '0.092830';
-
-
+BEGIN {
+  $Pod::Coverage::TrustPod::VERSION = '0.092831';
+}
 use base 'Pod::Coverage::CountParents';
 # ABSTRACT: allow a module's pod to contain Pod::Coverage hints
 
@@ -59,7 +59,6 @@ sub _trustme_check {
 1;
 
 __END__
-
 =pod
 
 =head1 NAME
@@ -68,7 +67,7 @@ Pod::Coverage::TrustPod - allow a module's pod to contain Pod::Coverage hints
 
 =head1 VERSION
 
-version 0.092830
+version 0.092831
 
 =head1 DESCRIPTION
 
@@ -79,7 +78,6 @@ symbol names trusted.
 Here is a sample Perl module:
 
   package Foo::Bar;
-our $VERSION = '0.092830';
 
   =head1 NAME
 
@@ -120,15 +118,14 @@ regular expression.
 
 =head1 AUTHOR
 
-  Ricardo SIGNES <rjbs@cpan.org>
+Ricardo SIGNES <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2009 by Ricardo SIGNES.
+This software is copyright (c) 2010 by Ricardo SIGNES.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
-=cut 
-
+=cut
 
