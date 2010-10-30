@@ -28,9 +28,8 @@
       },
       "test" : {
          "requires" : {
-            "BaseWithNoPod" : 0,
             "Carp::Heavy" : 0,
-            "Test::More" : 0
+            "Test::More" : "0.96"
          }
       }
    },
@@ -41,143 +40,154 @@
          "url" : "git://git.codesimply.com/Pod-Coverage-TrustPod.git"
       }
    },
-   "version" : "0.092831",
+   "version" : "0.092832",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
             "class" : "Dist::Zilla::Plugin::GatherDir",
-            "name" : "@RJBS/@Basic/GatherDir",
+            "name" : "@Filter/@Basic/GatherDir",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::PruneCruft",
-            "name" : "@RJBS/@Basic/PruneCruft",
+            "name" : "@Filter/@Basic/PruneCruft",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::ManifestSkip",
-            "name" : "@RJBS/@Basic/ManifestSkip",
+            "name" : "@Filter/@Basic/ManifestSkip",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaYAML",
-            "name" : "@RJBS/@Basic/MetaYAML",
+            "name" : "@Filter/@Basic/MetaYAML",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::License",
-            "name" : "@RJBS/@Basic/License",
+            "name" : "@Filter/@Basic/License",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::Readme",
-            "name" : "@RJBS/@Basic/Readme",
+            "name" : "@Filter/@Basic/Readme",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::ExtraTests",
-            "name" : "@RJBS/@Basic/ExtraTests",
+            "name" : "@Filter/@Basic/ExtraTests",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::ExecDir",
-            "name" : "@RJBS/@Basic/ExecDir",
+            "name" : "@Filter/@Basic/ExecDir",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::ShareDir",
-            "name" : "@RJBS/@Basic/ShareDir",
+            "name" : "@Filter/@Basic/ShareDir",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::MakeMaker",
-            "name" : "@RJBS/@Basic/MakeMaker",
+            "name" : "@Filter/@Basic/MakeMaker",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::Manifest",
-            "name" : "@RJBS/@Basic/Manifest",
+            "name" : "@Filter/@Basic/Manifest",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::TestRelease",
-            "name" : "@RJBS/@Basic/TestRelease",
+            "name" : "@Filter/@Basic/TestRelease",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::ConfirmRelease",
-            "name" : "@RJBS/@Basic/ConfirmRelease",
+            "name" : "@Filter/@Basic/ConfirmRelease",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::UploadToCPAN",
-            "name" : "@RJBS/@Basic/UploadToCPAN",
-            "version" : "4.102342"
-         },
-         {
-            "class" : "Dist::Zilla::Plugin::AutoPrereqs",
-            "name" : "@RJBS/AutoPrereqs",
+            "name" : "@Filter/@Basic/UploadToCPAN",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::NextVersion",
-            "name" : "@RJBS/Git::NextVersion",
+            "name" : "@Filter/Git::NextVersion",
             "version" : "1.102810"
          },
          {
             "class" : "Dist::Zilla::Plugin::PkgVersion",
-            "name" : "@RJBS/PkgVersion",
+            "name" : "@Filter/PkgVersion",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaConfig",
-            "name" : "@RJBS/MetaConfig",
+            "name" : "@Filter/MetaConfig",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaJSON",
-            "name" : "@RJBS/MetaJSON",
+            "name" : "@Filter/MetaJSON",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::NextRelease",
-            "name" : "@RJBS/NextRelease",
+            "name" : "@Filter/NextRelease",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::PodSyntaxTests",
-            "name" : "@RJBS/PodSyntaxTests",
+            "name" : "@Filter/PodSyntaxTests",
             "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::Repository",
-            "name" : "@RJBS/Repository",
+            "name" : "@Filter/Repository",
             "version" : "0.14"
          },
          {
+            "class" : "Dist::Zilla::Plugin::Prereqs",
+            "config" : {
+               "Dist::Zilla::Plugin::Prereqs" : {
+                  "phase" : "test",
+                  "type" : "requires"
+               }
+            },
+            "name" : "@Filter/TestMoreWithSubtests",
+            "version" : "4.102342"
+         },
+         {
             "class" : "Dist::Zilla::Plugin::PodWeaver",
-            "name" : "@RJBS/PodWeaver",
+            "name" : "@Filter/PodWeaver",
             "version" : "3.101641"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Check",
-            "name" : "@RJBS/@Git/Check",
+            "name" : "@Filter/@Git/Check",
             "version" : "1.102810"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Commit",
-            "name" : "@RJBS/@Git/Commit",
+            "name" : "@Filter/@Git/Commit",
             "version" : "1.102810"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Tag",
-            "name" : "@RJBS/@Git/Tag",
+            "name" : "@Filter/@Git/Tag",
             "version" : "1.102810"
          },
          {
             "class" : "Dist::Zilla::Plugin::Git::Push",
-            "name" : "@RJBS/@Git/Push",
+            "name" : "@Filter/@Git/Push",
             "version" : "1.102810"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::AutoPrereqs",
+            "name" : "AutoPrereqs",
+            "version" : "4.102342"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",

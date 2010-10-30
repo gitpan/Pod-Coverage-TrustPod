@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Pod::Coverage::TrustPod;
 BEGIN {
-  $Pod::Coverage::TrustPod::VERSION = '0.092831';
+  $Pod::Coverage::TrustPod::VERSION = '0.092832';
 }
 use base 'Pod::Coverage::CountParents';
 # ABSTRACT: allow a module's pod to contain Pod::Coverage hints
@@ -67,7 +67,7 @@ Pod::Coverage::TrustPod - allow a module's pod to contain Pod::Coverage hints
 
 =head1 VERSION
 
-version 0.092831
+version 0.092832
 
 =head1 DESCRIPTION
 

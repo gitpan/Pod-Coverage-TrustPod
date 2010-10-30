@@ -12,9 +12,8 @@ my %WriteMakefileArgs = (
   'ABSTRACT' => 'allow a module\'s pod to contain Pod::Coverage hints',
   'AUTHOR' => 'Ricardo SIGNES <rjbs@cpan.org>',
   'BUILD_REQUIRES' => {
-    'BaseWithNoPod' => '0',
     'Carp::Heavy' => '0',
-    'Test::More' => '0'
+    'Test::More' => '0.96'
   },
   'CONFIGURE_REQUIRES' => {
     'ExtUtils::MakeMaker' => '6.31'
@@ -28,7 +27,7 @@ my %WriteMakefileArgs = (
     'Pod::Eventual::Simple' => '0',
     'Pod::Find' => '0'
   },
-  'VERSION' => '0.092831',
+  'VERSION' => '0.092832',
   'test' => {
     'TESTS' => 't/*.t'
   }
