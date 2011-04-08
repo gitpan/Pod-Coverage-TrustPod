@@ -27,7 +27,7 @@ my %WriteMakefileArgs = (
     'Pod::Eventual::Simple' => '0',
     'Pod::Find' => '0'
   },
-  'VERSION' => '0.092832',
+  'VERSION' => '0.100000',
   'test' => {
     'TESTS' => 't/*.t'
   }
