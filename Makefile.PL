@@ -4,7 +4,7 @@ use warnings;
 
 
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
@@ -12,11 +12,10 @@ my %WriteMakefileArgs = (
   'ABSTRACT' => 'allow a module\'s pod to contain Pod::Coverage hints',
   'AUTHOR' => 'Ricardo SIGNES <rjbs@cpan.org>',
   'BUILD_REQUIRES' => {
-    'Carp::Heavy' => '0',
     'Test::More' => '0.96'
   },
   'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+    'ExtUtils::MakeMaker' => '6.30'
   },
   'DISTNAME' => 'Pod-Coverage-TrustPod',
   'EXE_FILES' => [],
@@ -27,7 +26,7 @@ my %WriteMakefileArgs = (
     'Pod::Eventual::Simple' => '0',
     'Pod::Find' => '0'
   },
-  'VERSION' => '0.100000',
+  'VERSION' => '0.100001',
   'test' => {
     'TESTS' => 't/*.t'
   }

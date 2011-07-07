@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Pod::Coverage::TrustPod;
 BEGIN {
-  $Pod::Coverage::TrustPod::VERSION = '0.100000';
+  $Pod::Coverage::TrustPod::VERSION = '0.100001';
 }
 use base 'Pod::Coverage::CountParents';
 # ABSTRACT: allow a module's pod to contain Pod::Coverage hints
@@ -53,7 +53,7 @@ sub _trustme_check {
     {}
   );
 
-  return grep { $sym =~ /$_/ } @{ $self->{trustme} }, keys %$from_pod;
+  return grep { $sym =~ /\A$_\z/ } @{ $self->{trustme} }, keys %$from_pod;
 }
 
 1;
@@ -67,7 +67,7 @@ Pod::Coverage::TrustPod - allow a module's pod to contain Pod::Coverage hints
 
 =head1 VERSION
 
-version 0.100000
+version 0.100001
 
 =head1 DESCRIPTION
 
@@ -114,7 +114,7 @@ Here is a sample Perl module:
 This file would report full coverage, because any non-empty lines inside a
 block of POD targeted to Pod::Coverage are treated as C<trustme> patterns.
 Leading and trailing whitespace is stripped and the remainder is treated as a
-regular expression.
+regular expression anchored at both ends.
 
 =head1 AUTHOR
 
