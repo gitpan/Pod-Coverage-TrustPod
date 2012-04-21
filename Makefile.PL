@@ -9,26 +9,29 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'allow a module\'s pod to contain Pod::Coverage hints',
-  'AUTHOR' => 'Ricardo SIGNES <rjbs@cpan.org>',
-  'BUILD_REQUIRES' => {
-    'Test::More' => '0.96'
+  "ABSTRACT" => "allow a module's pod to contain Pod::Coverage hints",
+  "AUTHOR" => "Ricardo SIGNES <rjbs\@cpan.org>",
+  "BUILD_REQUIRES" => {
+    "Test::More" => "0.96"
   },
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.30'
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'DISTNAME' => 'Pod-Coverage-TrustPod',
-  'EXE_FILES' => [],
-  'LICENSE' => 'perl',
-  'NAME' => 'Pod::Coverage::TrustPod',
-  'PREREQ_PM' => {
-    'Pod::Coverage::CountParents' => '0',
-    'Pod::Eventual::Simple' => '0',
-    'Pod::Find' => '0'
+  "DISTNAME" => "Pod-Coverage-TrustPod",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "Pod::Coverage::TrustPod",
+  "PREREQ_PM" => {
+    "Pod::Coverage::CountParents" => 0,
+    "Pod::Eventual::Simple" => 0,
+    "Pod::Find" => 0,
+    "base" => 0,
+    "strict" => 0,
+    "warnings" => 0
   },
-  'VERSION' => '0.100001',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "0.100002",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 
